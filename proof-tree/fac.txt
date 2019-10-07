@@ -1,0 +1,9 @@
+{with {fac
+  {with {facX {fun {facY}
+    {with {fac {fun {x} {{facY facY} x}}}
+
+    {fun {n} {if0 n 1 {* n {fac {- n 1}}}  }}}}}
+
+  {facX facX}  }}
+
+{fac 10}  }

@@ -14,7 +14,7 @@ case class ProofTree(premises: List[ProofTree], conclusion: String) {
     }
 
     if (premises.isEmpty) {
-      Paragraph(List(conclusion))
+      Paragraph(conclusion)
     }
     else {
       val premisesParagraph = arrange(premises.map(_.toParagraph))

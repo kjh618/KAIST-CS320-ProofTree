@@ -9,3 +9,7 @@ case class Paragraph(lines: List[String]) {
 
   override def toString: String = lines.mkString("\n")
 }
+
+object Paragraph {
+  def apply(line: String): Paragraph = Paragraph(List(line))
+}
