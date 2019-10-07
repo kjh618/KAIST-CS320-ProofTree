@@ -32,10 +32,5 @@ object ProofTreeDrawer {
     }
   }
 
-  def run(str: String): String = {
-    val (res, tree) = interp(PLParser(str), Map())
-    "Result: " + res +
-      "\nProof Tree:\n" +
-      tree
-  }
+  def run(str: String): String = interp(PLParser(str), Map())._2.toString
 }

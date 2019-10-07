@@ -1,39 +1,27 @@
 package prooftree
 
 case class ProofTree(premises: List[ProofTree], conclusion: String) {
-  override def toString: String = {
-    // TODO: Clean up the code
-    def arrange(strs: List[String]): (String, Int) = {
-      val widths = strs.map(_.split("\n").map(_.length).max)
-      val maxHeight = strs.map(_.count(_ == '\n') + 1).max
+  def toParagraph: Paragraph = {
+    def arrange(paragraphs: List[Paragraph]): Paragraph = {
+      val maxHeight = paragraphs.map(_.height).max
+      val resLines = paragraphs.map(_.normalized(maxHeight).lines).transpose
+      val widths = paragraphs.map(_.width).toVector
 
-      val resLines = strs.map(str => {
-        val lines = str.split("\n")
-        if (lines.length < maxHeight)
-          List.fill(maxHeight - lines.length)("") ++ lines
-        else
-          List() ++ lines
-      }).transpose
-
-      val between = "  "
-      val res = resLines.foldLeft("")((linesBefore, currentLine) => {
-          linesBefore + "\n" +
-            currentLine.foldLeft(("", 0))((tup, current) => {
-              val (before, idx) = tup
-              (before + s"%-${widths(idx)}s".format(current) + between, idx + 1)
-            })._1
-        })
-
-      (res, widths.sum + widths.length * between.length)
+      Paragraph(resLines.map(_.foldLeft(("  ", 0))((tup, cur) => {
+        val (acc, idx) = tup
+        (acc + s"%-${widths(idx)}s  ".format(cur), idx + 1)
+      })._1))
     }
 
-    if (premises == Nil)
-      conclusion
+    if (premises.isEmpty) {
+      Paragraph(List(conclusion))
+    }
     else {
-      val (premisesStr, width) = arrange(premises.map(_.toString))
-      premisesStr + "\n" +
-        "―" * (width max conclusion.length) + "\n" +
-        conclusion
+      val premisesParagraph = arrange(premises.map(_.toParagraph))
+      val bars = "―" * (premisesParagraph.width max (conclusion.length + 2))
+      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusion))
     }
   }
+
+  override def toString: String = toParagraph.toString
 }
