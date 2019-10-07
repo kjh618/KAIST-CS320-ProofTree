@@ -1,6 +1,7 @@
 package prooftree
 
 case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
+  // TODO: Use toReducedString
   def toParagraph: Paragraph = {
     def arrange(paragraphs: List[Paragraph]): Paragraph = {
       val maxHeight = paragraphs.map(_.height).max
