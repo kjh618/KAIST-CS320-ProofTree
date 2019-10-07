@@ -1,6 +1,6 @@
 package prooftree
 
-case class ProofTree(premises: List[ProofTree], conclusion: String) {
+case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
   def toParagraph: Paragraph = {
     def arrange(paragraphs: List[Paragraph]): Paragraph = {
       val maxHeight = paragraphs.map(_.height).max
@@ -14,11 +14,11 @@ case class ProofTree(premises: List[ProofTree], conclusion: String) {
     }
 
     if (premises.isEmpty) {
-      Paragraph(conclusion)
+      Paragraph(conclusion.toString)
     }
     else {
       val premisesParagraph = arrange(premises.map(_.toParagraph))
-      val bars = "―" * (premisesParagraph.width max (conclusion.length + 4))
+      val bars = "―" * (premisesParagraph.width max (conclusion.toString.length + 4))
       Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusion + "  "))
     }
   }
@@ -27,7 +27,7 @@ case class ProofTree(premises: List[ProofTree], conclusion: String) {
 }
 
 object ProofTree {
-  def apply(str: String): ProofTree = ProofTree(Nil, str)
+  def apply(mathExpr: MathExpr): ProofTree = ProofTree(Nil, mathExpr)
 
-  def apply(premise: String, conclusion: String): ProofTree = ProofTree(List(ProofTree(premise)), conclusion)
+  def apply(premise: MathExpr, conclusion: MathExpr): ProofTree = ProofTree(List(ProofTree(premise)), conclusion)
 }
