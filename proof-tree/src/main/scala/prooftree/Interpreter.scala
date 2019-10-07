@@ -5,6 +5,8 @@ import prooftree.PL._
 
 object Interpreter {
   def interp(expr: CFWAE, env: Env): Value = {
+    type BinOp = (Int, Int) => Int
+
     def applyBinOp(op: BinOp, left: Value, right: Value): Value = (left, right) match {
       case (NumVal(n1), NumVal(n2)) => NumVal(op(n1, n2))
       case (v1, v2) => error(s"not both numbers: $v1, $v2")

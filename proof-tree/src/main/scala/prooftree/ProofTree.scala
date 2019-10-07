@@ -18,10 +18,16 @@ case class ProofTree(premises: List[ProofTree], conclusion: String) {
     }
     else {
       val premisesParagraph = arrange(premises.map(_.toParagraph))
-      val bars = "―" * (premisesParagraph.width max (conclusion.length + 2))
-      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusion))
+      val bars = "―" * (premisesParagraph.width max (conclusion.length + 4))
+      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusion + "  "))
     }
   }
 
   override def toString: String = toParagraph.toString
+}
+
+object ProofTree {
+  def apply(str: String): ProofTree = ProofTree(Nil, str)
+
+  def apply(premise: String, conclusion: String): ProofTree = ProofTree(List(ProofTree(premise)), conclusion)
 }
