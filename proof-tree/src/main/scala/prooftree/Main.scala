@@ -1,5 +1,5 @@
 package prooftree
 
 object Main extends App {
-  println("Hello")
+  println(ProofTreeDrawer.run("{+ 4 {- 2 1}}"))
 }
