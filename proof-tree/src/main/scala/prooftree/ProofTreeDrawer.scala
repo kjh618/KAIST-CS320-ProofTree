@@ -1,10 +1,10 @@
 package prooftree
 
 import scala.sys.error
-import prooftree.PL._
+import prooftree.Env._
 
 object ProofTreeDrawer {
-  def interp(expr: CFWAE, env: Env): (Value, ProofTree) = {
+  def interp(expr: Expr, env: Env): (Value, ProofTree) = {
     type BinOp = (Int, Int) => Int
 
     def applyBinOp(op: BinOp, left: (Value, ProofTree), right: (Value, ProofTree)): (Value, ProofTree) = {
@@ -65,6 +65,6 @@ object ProofTreeDrawer {
 
   def run(str: String): String = {
     Reduced.initialize()
-    interp(PLParser(str), Map())._2.toReducedString()
+    interp(ExprParser(str), Map())._2.toReducedString()
   }
 }

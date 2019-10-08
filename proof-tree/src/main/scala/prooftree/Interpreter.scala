@@ -1,10 +1,10 @@
 package prooftree
 
 import scala.sys.error
-import prooftree.PL._
+import prooftree.Env._
 
 object Interpreter {
-  def interp(expr: CFWAE, env: Env): Value = {
+  def interp(expr: Expr, env: Env): Value = {
     type BinOp = (Int, Int) => Int
 
     def applyBinOp(op: BinOp, left: Value, right: Value): Value = (left, right) match {
@@ -31,5 +31,5 @@ object Interpreter {
     }
   }
 
-  def run(str: String): String = interp(PLParser(str), Map()).toString
+  def run(str: String): String = interp(ExprParser(str), Map()).toString
 }

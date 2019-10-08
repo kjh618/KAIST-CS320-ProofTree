@@ -1,12 +1,12 @@
 package prooftree
 
-import prooftree.PL._
+import prooftree.Env._
 
 trait MathExpr {
   def toReducedString(): String
 }
 
-case class Implication(env: Env, expr: CFWAE, value: Value) extends MathExpr {
+case class Implication(env: Env, expr: Expr, value: Value) extends MathExpr {
   override def toString: String = s"${envToString(env)} ⊢ $expr ⇒ $value"
 
   override def toReducedString(): String = {

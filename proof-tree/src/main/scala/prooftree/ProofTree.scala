@@ -1,7 +1,5 @@
 package prooftree
 
-import prooftree.PL._
-
 case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
   def toParagraph: Paragraph = {
     if (premises.isEmpty) {
@@ -16,6 +14,8 @@ case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
   }
 
   override def toString: String = toParagraph.toString
+
+  // TODO: Reduce so that the most outer layer is visible
 
   private def toReducedParagraphHelper(): Paragraph = {
     if (premises.isEmpty) {
