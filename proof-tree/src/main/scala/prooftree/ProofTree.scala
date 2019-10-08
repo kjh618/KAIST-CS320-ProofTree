@@ -29,8 +29,12 @@ case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
 
   def toReducedParagraph(): Paragraph = {
     Paragraph(toReducedParagraphHelper().lines ++
-      Reduced.exprs.map({ case (e, rs) => s"* $rs = ${e.toReducedString(Reduced.numNotReduce)}" }).toList.sorted ++
-      Reduced.values.map({ case (v, rs) => s"* $rs = ${v.toReducedString(Reduced.numNotReduce)}" }).toList.sorted)
+      Reduced.exprs.map({ case (e, rs) =>
+        s"* %s = %-${Reduced.notReduceLength * 2}s = %s".format(rs, e.toReducedString(Reduced.numNotReduce), e)
+      }).toList.sorted ++
+      Reduced.values.map({ case (v, rs) =>
+        s"* %s = %-${Reduced.notReduceLength * 2}s = %s".format(rs, v.toReducedString(Reduced.numNotReduce), v)
+      }).toList.sorted)
   }
 
   def toReducedString(): String = toReducedParagraph().toString

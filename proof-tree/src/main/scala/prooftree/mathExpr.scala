@@ -11,19 +11,16 @@ case class Implication(env: Env, expr: Expr, value: Value) extends MathExpr {
 
   override def toReducedString(): String = {
     val exprStr = expr.toReducedString(Reduced.numNotReduce)
-    val valueStr = value.toReducedString(Reduced.numNotReduce)
-    val envStr = envToReducedString(env, Reduced.numNotReduce)
+    val valueStr = value.toReducedString(0)
+    val envStr = envToReducedString(env, 0)
     s"$envStr ⊢ $exprStr ⇒ $valueStr"
   }
 }
 
 case class Membership(name: String, env: Env) extends MathExpr {
-  override def toString: String = s"$name ∈ ${envToString(env)}"
+  override def toString: String = s"$name ∈ ${envDomainToString(env)}"
 
-  override def toReducedString(): String = {
-    val envStr = envToReducedString(env, Reduced.numNotReduce)
-    s"$name ∈ $envStr"
-  }
+  override def toReducedString(): String = s"$name ∈ ${envDomainToString(env)}"
 }
 
 case class Other(str: String) extends MathExpr {

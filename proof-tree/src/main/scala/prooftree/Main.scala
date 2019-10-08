@@ -4,10 +4,6 @@ import java.io._
 
 object Main {
   def main(args: Array[String]): Unit = {
-    println(ProofTreeDrawer.run("{+ 1234 5678}"))
-    println()
-    println(ProofTreeDrawer.run("{with {x 1234} {+ x 5678}}"))
-
     val pw = new PrintWriter("out.txt")
 
     pw.println(ProofTreeDrawer.run(
@@ -22,6 +18,7 @@ object Main {
         |{fac 1}  }
         |""".stripMargin))
     pw.println()
+    
     pw.println(ProofTreeDrawer.run(
       """{with {fac
         |  {with {facX {fun {facY}

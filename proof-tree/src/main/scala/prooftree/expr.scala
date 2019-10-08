@@ -19,14 +19,18 @@ case class Add(left: Expr, right: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val leftStr = left.toReducedString(numNotReduce - 1)
       val rightStr = right.toReducedString(numNotReduce - 1)
-      s"{+ $leftStr $rightStr}"
+      val res = s"{+ $leftStr $rightStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -35,14 +39,18 @@ case class Sub(left: Expr, right: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val leftStr = left.toReducedString(numNotReduce - 1)
       val rightStr = right.toReducedString(numNotReduce - 1)
-      s"{- $leftStr $rightStr}"
+      val res = s"{- $leftStr $rightStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -51,14 +59,18 @@ case class Mul(left: Expr, right: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val leftStr = left.toReducedString(numNotReduce - 1)
       val rightStr = right.toReducedString(numNotReduce - 1)
-      s"{* $leftStr $rightStr}"
+      val res = s"{* $leftStr $rightStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -67,14 +79,18 @@ case class With(name: String, value: Expr, body: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val valueStr = value.toReducedString(numNotReduce - 1)
       val bodyStr = body.toReducedString(numNotReduce - 1)
-      s"{with {$name $valueStr} $bodyStr}"
+      val res = s"{with {$name $valueStr} $bodyStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -92,13 +108,17 @@ case class Fun(param: String, body: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val bodyStr = body.toReducedString(numNotReduce - 1)
-      s"{fun {$param} $bodyStr}"
+      val res = s"{fun {$param} $bodyStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -107,14 +127,18 @@ case class App(fun: Expr, arg: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val funStr = fun.toReducedString(numNotReduce - 1)
       val argStr = arg.toReducedString(numNotReduce - 1)
-      s"{$funStr $argStr}"
+      val res = s"{$funStr $argStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
 
@@ -123,14 +147,18 @@ case class If0(cond: Expr, tru: Expr, fls: Expr) extends Expr {
 
   override def toReducedString(numNotReduce: Int): String = Reduced.exprs.get(this) match {
     case Some(rs) if numNotReduce == 0 => rs
-    case None if numNotReduce == 0 =>
-      val rs = f"e${Reduced.exprs.size}%01d"
-      Reduced.exprs += (this -> rs)
-      rs
-    case _ =>
+    case opt =>
       val condStr = cond.toReducedString(numNotReduce - 1)
       val truStr = tru.toReducedString(numNotReduce - 1)
       val flsStr = fls.toReducedString(numNotReduce - 1)
-      s"{if0 $condStr $truStr $flsStr}"
+      val res = s"{if0 $condStr $truStr $flsStr}"
+      if (opt.isEmpty && res.length > Reduced.notReduceLength && numNotReduce == 0) {
+        val rs = s"e%0${Reduced.numDigits}d".format(Reduced.exprs.size)
+        Reduced.exprs += (this -> rs)
+        rs
+      }
+      else {
+        res
+      }
   }
 }
