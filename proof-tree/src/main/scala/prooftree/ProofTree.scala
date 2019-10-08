@@ -1,30 +1,41 @@
 package prooftree
 
+import prooftree.PL._
+
 case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
-  // TODO: Use toReducedString
   def toParagraph: Paragraph = {
-    def arrange(paragraphs: List[Paragraph]): Paragraph = {
-      val maxHeight = paragraphs.map(_.height).max
-      val resLines = paragraphs.map(_.normalized(maxHeight).lines).transpose
-      val widths = paragraphs.map(_.width).toVector
-
-      Paragraph(resLines.map(_.foldLeft(("  ", 0))((tup, cur) => {
-        val (acc, idx) = tup
-        (acc + s"%-${widths(idx)}s  ".format(cur), idx + 1)
-      })._1))
-    }
-
     if (premises.isEmpty) {
       Paragraph(conclusion.toString)
     }
     else {
-      val premisesParagraph = arrange(premises.map(_.toParagraph))
-      val bars = "―" * (premisesParagraph.width max (conclusion.toString.length + 4))
-      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusion + "  "))
+      val premisesParagraph = Paragraph.arrange(premises.map(_.toParagraph))
+      val conclusionStr = conclusion.toString
+      val bars = "―" * (premisesParagraph.width max (conclusionStr.length + 4))
+      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusionStr + "  "))
     }
   }
 
   override def toString: String = toParagraph.toString
+
+  private def toReducedParagraphHelper(): Paragraph = {
+    if (premises.isEmpty) {
+      Paragraph(conclusion.toReducedString())
+    }
+    else {
+      val premisesParagraph = Paragraph.arrange(premises.map(_.toReducedParagraphHelper()))
+      val conclusionStr = conclusion.toReducedString()
+      val bars = "―" * (premisesParagraph.width max (conclusionStr.length + 4))
+      Paragraph(premisesParagraph.lines :+ bars :+ ("  " + conclusionStr + "  "))
+    }
+  }
+
+  def toReducedParagraph(): Paragraph = {
+    Paragraph(toReducedParagraphHelper().lines ++
+      Reduced.exprs.map({ case (e, s) => s"* $s = $e" }).toList.sorted ++
+      Reduced.values.map({ case (v, s) => s"* $s = $v" }).toList.sorted)
+  }
+
+  def toReducedString(): String = toReducedParagraph().toString
 }
 
 object ProofTree {

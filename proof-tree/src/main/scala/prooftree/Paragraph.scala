@@ -12,4 +12,15 @@ case class Paragraph(lines: List[String]) {
 
 object Paragraph {
   def apply(line: String): Paragraph = Paragraph(List(line))
+
+  def arrange(paragraphs: List[Paragraph]): Paragraph = {
+    val maxHeight = paragraphs.map(_.height).max
+    val resLines = paragraphs.map(_.normalized(maxHeight).lines).transpose
+    val widths = paragraphs.map(_.width).toVector
+
+    Paragraph(resLines.map(_.foldLeft(("  ", 0))((tup, cur) => {
+      val (acc, idx) = tup
+      (acc + s"%-${widths(idx)}s  ".format(cur), idx + 1)
+    })._1))
+  }
 }

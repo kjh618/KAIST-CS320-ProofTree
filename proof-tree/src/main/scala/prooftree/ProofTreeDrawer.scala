@@ -14,8 +14,7 @@ object ProofTreeDrawer {
         case (NumVal(n1), NumVal(n2)) =>
           val res = NumVal(op(n1, n2))
           (res, ProofTree(List(leftTree, rightTree), Implication(env, expr, res)))
-        case (v1, v2) =>
-          error(s"not both numbers: $v1, $v2")
+        case (v1, v2) => error(s"not both numbers: $v1, $v2")
       }
     }
 
@@ -24,12 +23,9 @@ object ProofTreeDrawer {
         val res = NumVal(n)
         (res, ProofTree(Implication(env, expr, res)))
 
-      case Add(l, r) =>
-        applyBinOp(_ + _, interp(l, env), interp(r, env))
-      case Sub(l, r) =>
-        applyBinOp(_ - _, interp(l, env), interp(r, env))
-      case Mul(l, r) =>
-        applyBinOp(_ * _, interp(l, env), interp(r, env))
+      case Add(l, r) => applyBinOp(_ + _, interp(l, env), interp(r, env))
+      case Sub(l, r) => applyBinOp(_ - _, interp(l, env), interp(r, env))
+      case Mul(l, r) => applyBinOp(_ * _, interp(l, env), interp(r, env))
 
       case With(name, value, body) =>
         val (valueRes, valueTree) = interp(value, env)
@@ -38,7 +34,7 @@ object ProofTreeDrawer {
 
       case Id(name) =>
         val res = env.getOrElse(name, error(s"free identifier: $name"))
-        (res, ProofTree(Other(s"$name ∈ ${envToString(env)}"), Implication(env, expr, res)))
+        (res, ProofTree(Membership(name, env), Implication(env, expr, res)))
 
       case Fun(param, body) =>
         val res = FunVal(param, body, env)
@@ -67,5 +63,8 @@ object ProofTreeDrawer {
     }
   }
 
-  def run(str: String): String = interp(PLParser(str), Map())._2.toString
+  def run(str: String): String = {
+    Reduced.initialize()
+    interp(PLParser(str), Map())._2.toReducedString()
+  }
 }
