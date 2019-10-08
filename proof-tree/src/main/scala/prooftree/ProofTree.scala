@@ -15,8 +15,6 @@ case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
 
   override def toString: String = toParagraph.toString
 
-  // TODO: Reduce so that the most outer layer is visible
-
   private def toReducedParagraphHelper(): Paragraph = {
     if (premises.isEmpty) {
       Paragraph(conclusion.toReducedString())
@@ -31,8 +29,8 @@ case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
 
   def toReducedParagraph(): Paragraph = {
     Paragraph(toReducedParagraphHelper().lines ++
-      Reduced.exprs.map({ case (e, s) => s"* $s = $e" }).toList.sorted ++
-      Reduced.values.map({ case (v, s) => s"* $s = $v" }).toList.sorted)
+      Reduced.exprs.map({ case (e, rs) => s"* $rs = ${e.toReducedString(Reduced.numNotReduce)}" }).toList.sorted ++
+      Reduced.values.map({ case (v, rs) => s"* $rs = ${v.toReducedString(Reduced.numNotReduce)}" }).toList.sorted)
   }
 
   def toReducedString(): String = toReducedParagraph().toString

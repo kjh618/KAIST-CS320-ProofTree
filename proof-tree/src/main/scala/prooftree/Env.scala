@@ -5,6 +5,6 @@ object Env {
 
   def envToString(env: Env): String = env.map({ case (n, v) => s"$n ↦ $v" }).mkString("[", ", ", "]")
 
-  def envToReducedString(env: Env): String =
-    env.map({ case (n, v) => s"$n ↦ ${v.toReducedString}" }).mkString("[", ", ", "]")
+  def envToReducedString(env: Env, numNotReduce: Int): String =
+    env.map({ case (n, v) => s"$n ↦ ${v.toReducedString(numNotReduce)}" }).mkString("[", ", ", "]")
 }
