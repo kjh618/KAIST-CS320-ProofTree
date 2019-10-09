@@ -10,7 +10,7 @@ $ sbt "run input.txt output.txt"
 
 
 ## Examples
-* `proof-tree/add.txt`
+* Input: `proof-tree/add.txt`, Output:
 ```
                 [] ⊢ 2 ⇒ 2  [] ⊢ 1 ⇒ 1    
               ――――――――――――――――――――――――――  
@@ -19,7 +19,7 @@ $ sbt "run input.txt output.txt"
   [] ⊢ {+ 4 {- 2 1}} ⇒ 5  
 ```
 
-* `proof-tree/fun.txt`
+* Input: `proof-tree/fun.txt`, Output:
 ```
                                                                                                                                                x ∈ [x]                                 
                                                                                                                                              ―――――――――――――――――――                       
@@ -32,7 +32,7 @@ $ sbt "run input.txt output.txt"
   [] ⊢ {with {add1 {fun {x} {+ x 1}}} {add1 2}} ⇒ 3  
 ```
 
-* `proof-tree/fac1.txt`
+* Input: `proof-tree/fac1.txt`, Output:
 ```
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      facY ∈ [facY, x]                    facY ∈ [facY, x]                    [facY ↦ v0] ⊢ {fun {x} {{facY facY} x}} ⇒ v1  [facY ↦ v0, fac ↦ v1] ⊢ {fun {n} e1} ⇒ v2                                          n ∈ [facY, fac, n]                                                                        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ――――――――――――――――――――――――――――――――――  ――――――――――――――――――――――――――――――――――  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――                                      ――――――――――――――――――――――――――――――――――――――――                                                    
