@@ -6,4 +6,4 @@
 
   {facX facX}  }}
 
-{fac 10}  }
+{fac 1}  }

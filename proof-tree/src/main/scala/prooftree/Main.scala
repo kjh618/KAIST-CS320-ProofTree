@@ -4,35 +4,21 @@ import java.io._
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val pw = new PrintWriter("out.txt")
+    if (args.length == 2) {
+      println(s"Reading ${args(0)}...")
+      val source = scala.io.Source.fromFile(args(0))
+      val str = source.mkString
+      source.close()
 
-    pw.println(ProofTreeDrawer.run(
-      """{with {fac
-        |  {with {facX {fun {facY}
-        |    {with {fac {fun {x} {{facY facY} x}}}
-        |
-        |    {fun {n} {if0 n 1 {* n {fac {- n 1}}}  }}}}}
-        |
-        |  {facX facX}  }}
-        |
-        |{fac 1}  }
-        |""".stripMargin))
-    pw.println()
-    
-    pw.println(ProofTreeDrawer.run(
-      """{with {fac
-        |  {with {facX {fun {facY}
-        |    {with {fac {fun {x} {{facY facY} x}}}
-        |
-        |    {fun {n} {if0 n 1 {* n {fac {- n 1}}}  }}}}}
-        |
-        |  {facX facX}  }}
-        |
-        |{fac 2}  }
-        |""".stripMargin))
+      println(s"Writing the proof tree to ${args(1)}...")
+      val pw = new PrintWriter(args(1))
+      pw.print(ProofTreeDrawer.run(str))
+      pw.close()
 
-    pw.close()
-
-    println("Done!")
+      println("Done!")
+    }
+    else {
+      println("Usage: sbt \"run input.txt output.txt\"")
+    }
   }
 }
