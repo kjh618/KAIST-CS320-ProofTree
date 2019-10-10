@@ -1,0 +1,12 @@
+{with {mk-rec {fun {body-proc}
+  {with {fX {fun {fY}
+    {with {f {fun {x} {{fY fY} x}}}
+
+    {body-proc f}  }}}
+
+  {fX fX}  }}}
+
+{with {fac {mk-rec
+  {fun {fac} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}  }}
+
+{fac 0}  }}

@@ -1,0 +1,31 @@
+// `facX`
+* v0 = ⟨λfacY.e0, []⟩                           = 
+⟨
+  λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, 
+  []
+⟩
+
+// Inner `fac`
+* v1 = ⟨λx.{{facY facY} x}, [facY ↦ v0]⟩        = 
+⟨
+  λx.{{facY facY} x}, 
+  [
+    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩
+  ]
+⟩
+
+// Outer `fac`
+* v2 = ⟨λn.e1, [facY ↦ v0, fac ↦ v1]⟩           = 
+⟨
+  λn.{if0 n 1 {* n {fac {- n 1}}}}, 
+  [
+    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩, 
+    fac ↦ ⟨λx.{{facY facY} x}, [facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩]⟩
+  ]
+⟩
+
+/*
+v2 is the result of `{facX facX}`, which is bound to the outer `fac`.
+It is structured so that `{facY facY}` gives v2 as the result,
+which means that the inner `fac` would be the same function as the outer `fac`.
+*/

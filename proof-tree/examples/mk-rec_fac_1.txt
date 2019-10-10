@@ -9,4 +9,4 @@
 {with {fac {mk-rec
   {fun {fac} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}  }}
 
-{fac 10}  }}
+{fac 1}  }}
