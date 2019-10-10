@@ -1,16 +1,16 @@
 # Proof Tree Drawer for CFWAE
-A proof tree drawer for CFWAE (Conditionals, Functions, "With"'s, Arithmetic Expressions).
+A proof tree drawer for CFWAE (Conditionals, Functions, "With"'s, Arithmetic Expressions) with automatic reducing for long expressions and values.
 
 
 ## Usage
 ```console
 $ cd proof-tree
-$ sbt "run input.txt output.txt"
+$ sbt "run input_file output_file"
 ```
 
 
 ## Examples
-* Input: `proof-tree/add.txt`, Output:
+* Input file: `examples/add.txt`, Output:
 ```
                 [] ⊢ 2 ⇒ 2  [] ⊢ 1 ⇒ 1    
               ――――――――――――――――――――――――――  
@@ -19,7 +19,7 @@ $ sbt "run input.txt output.txt"
   [] ⊢ {+ 4 {- 2 1}} ⇒ 5  
 ```
 
-* Input: `proof-tree/fun.txt`, Output:
+* Input file: `examples/fun.txt`, Output:
 ```
                                                                                                                                                x ∈ [x]                                 
                                                                                                                                              ―――――――――――――――――――                       
@@ -32,7 +32,7 @@ $ sbt "run input.txt output.txt"
   [] ⊢ {with {add1 {fun {x} {+ x 1}}} {add1 2}} ⇒ 3  
 ```
 
-* Input: `proof-tree/fac1.txt`, Output:
+* Input file: `examples/fac_1.txt`, Output:
 ```
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      facY ∈ [facY, x]                    facY ∈ [facY, x]                    [facY ↦ v0] ⊢ {fun {x} {{facY facY} x}} ⇒ v1  [facY ↦ v0, fac ↦ v1] ⊢ {fun {n} e1} ⇒ v2                                          n ∈ [facY, fac, n]                                                                        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ――――――――――――――――――――――――――――――――――  ――――――――――――――――――――――――――――――――――  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――                                      ――――――――――――――――――――――――――――――――――――――――                                                    
