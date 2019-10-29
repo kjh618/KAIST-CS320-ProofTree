@@ -1,8 +1,8 @@
 // `facX`
-* v0 = ⟨λfacY.e0, []⟩                           = 
+* v0 = ⟨λfacY.e0, ∅⟩                           = 
 ⟨
   λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, 
-  []
+  ∅
 ⟩
 
 // Inner `fac`
@@ -10,7 +10,7 @@
 ⟨
   λx.{{facY facY} x}, 
   [
-    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩
+    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, ∅⟩
   ]
 ⟩
 
@@ -19,8 +19,8 @@
 ⟨
   λn.{if0 n 1 {* n {fac {- n 1}}}}, 
   [
-    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩, 
-    fac ↦ ⟨λx.{{facY facY} x}, [facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, []⟩]⟩
+    facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, ∅⟩, 
+    fac ↦ ⟨λx.{{facY facY} x}, [facY ↦ ⟨λfacY.{with {fac {fun {x} {{facY facY} x}}} {fun {n} {if0 n 1 {* n {fac {- n 1}}}}}}, ∅⟩]⟩
   ]
 ⟩
 
