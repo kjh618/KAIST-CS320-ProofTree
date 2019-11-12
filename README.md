@@ -2,14 +2,12 @@
 A proof tree drawer for CFWAE (Conditionals, Functions, "With"'s, Arithmetic Expressions) with automatic reducing for long expressions and values.
 
 
-## Usage
-```console
-$ sbt "run input_file output_file"
-```
+## Run Online
+https://kjh618.github.io/KAIST-CS320-ProofTree/
 
 
 ## Examples
-* Input file: `examples/add.txt`, Output:
+* Input: `examples/add.txt`, Output:
 ```
                ∅ ⊢ 2 ⇒ 2  ∅ ⊢ 1 ⇒ 1    
              ――――――――――――――――――――――――  
@@ -18,7 +16,7 @@ $ sbt "run input_file output_file"
   ∅ ⊢ {+ 4 {- 2 1}} ⇒ 5  
 ```
 
-* Input file: `examples/fun.txt`, Output:
+* Input: `examples/fun.txt`, Output:
 ```
                                                                                                                                           x ∈ [x]                                 
                                                                                                                                         ―――――――――――――――――――                       
@@ -31,7 +29,7 @@ $ sbt "run input_file output_file"
   ∅ ⊢ {with {add1 {fun {x} {+ x 1}}} {add1 2}} ⇒ 3  
 ```
 
-* Input file: `examples/fac_1.txt`, Output:
+* Input: `examples/fac_1.txt`, Output:
 ```
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     facY ∈ [facY, x]                    facY ∈ [facY, x]                    [facY ↦ v0] ⊢ {fun {x} {{facY facY} x}} ⇒ v1  [facY ↦ v0, fac ↦ v1] ⊢ {fun {n} e1} ⇒ v2                                          n ∈ [facY, fac, n]                                                                        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ――――――――――――――――――――――――――――――――――  ――――――――――――――――――――――――――――――――――  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――                                      ――――――――――――――――――――――――――――――――――――――――                                                    
