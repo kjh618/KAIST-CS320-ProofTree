@@ -2013,7 +2013,7 @@ function $m_Lprooftree_Env$() {
 /** @constructor */
 function $c_Lprooftree_Main$() {
   $c_O.call(this);
-  this.program$1 = null;
+  this.programInput$1 = null;
   this.proofTree$1 = null
 }
 $c_Lprooftree_Main$.prototype = new $h_O();
@@ -2025,12 +2025,12 @@ function $h_Lprooftree_Main$() {
 $h_Lprooftree_Main$.prototype = $c_Lprooftree_Main$.prototype;
 $c_Lprooftree_Main$.prototype.init___ = (function() {
   $n_Lprooftree_Main$ = this;
-  this.program$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("programTextarea");
-  this.proofTree$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("proofTreeTextarea");
+  this.programInput$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("programInput");
+  this.proofTree$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("proofTree");
   return this
 });
 $c_Lprooftree_Main$.prototype.runProgram__V = (function() {
-  this.proofTree$1.value = $m_Lprooftree_ProofTreeDrawer$().run__T__T($as_T(this.program$1.value))
+  this.proofTree$1.value = $m_Lprooftree_ProofTreeDrawer$().run__T__T($as_T(this.programInput$1.value))
 });
 $c_Lprooftree_Main$.prototype.main__AT__V = (function(args) {
   /*<skip>*/

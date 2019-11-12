@@ -1,12 +1,20 @@
+.verticalLayout > * {
+    display: block;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
 textarea {
     width: 100%;
     white-space: pre;
 }
 
-#programTextarea {
-    height: 200px;
+#programInput {
+    height: 150px;
 }
 
-#proofTreeTextarea {
-    height: 500px;
+#proofTree {
+    height: 400px;
 }

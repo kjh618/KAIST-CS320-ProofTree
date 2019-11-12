@@ -6,21 +6,26 @@
         <link rel="stylesheet" href="styles.css">
     </head>
 
-    <body>
+    <body class="verticalLayout">
         <h1>Proof Tree Drawer for CFWAE</h1>
 
-        <form>
-            <label for="programTextarea">Program</label>
-            <textarea id="programTextarea"></textarea>
+        <form class="verticalLayout">
+            <div class="verticalLayout">
+                <label for="programInput">Enter Your Program:</label>
+                <textarea id="programInput"></textarea>
+            </div>
 
-            <input type="checkbox" id="reduceCheckbox">
-            <label for="reduceCheckbox">Enable String Reduce</label>
-
-            <input type="button" value="Run" onclick="runProgram()">
+            <div class="horizontalLayout">
+                <input type="button" value="Run" onclick="runProgram()">
+                <!-- <input type="checkbox" id="reducingCheckbox">
+                <label for="reducingCheckbox">Enable Reducing</label> -->
+            </div>
         </form>
 
-        <label for="proofTreeTextarea">Proof Tree</label>
-        <textarea id="proofTreeTextarea" readonly></textarea>
+        <div class="verticalLayout">
+            <label for="proofTree">Proof Tree:</label>
+            <textarea id="proofTree" readonly></textarea>
+        </div>
 
         <!-- Include Scala.js compiled code -->
         <script type="text/javascript" src="./target/scala-2.12/proof-tree-fastopt.js"></script>
