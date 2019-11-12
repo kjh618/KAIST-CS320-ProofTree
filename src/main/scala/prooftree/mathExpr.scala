@@ -23,8 +23,8 @@ case class Membership(name: String, env: Env) extends MathExpr {
   override def toReducedString(): String = s"$name ∈ ${envDomainToString(env)}"
 }
 
-case class Other(str: String) extends MathExpr {
-  override def toString: String = str
+case class NotEqualTo0(value: Value) extends MathExpr {
+  override def toString: String = s"$value ≠ 0"
 
-  override def toReducedString(): String = str
+  override def toReducedString(): String = s"${value.toReducedString(0)} ≠ 0"
 }

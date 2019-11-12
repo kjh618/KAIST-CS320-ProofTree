@@ -2276,7 +2276,7 @@ $c_Lprooftree_ProofTreeDrawer$.prototype.interp__Lprooftree_Expr__sci_Map__T2 = 
       };
       return new $c_T2().init___O__O(bodyRes$3, new $c_Lprooftree_ProofTree().init___sci_List__Lprooftree_MathExpr(result$4, new $c_Lprooftree_Implication().init___sci_Map__Lprooftree_Expr__Lprooftree_Value(env, expr, bodyRes$3)))
     } else {
-      $m_s_sys_package$().error__T__sr_Nothing$(("not a function: " + funRes))
+      $m_s_sys_package$().error__T__sr_Nothing$(("not a closure: " + funRes))
     }
   } else if ((expr instanceof $c_Lprooftree_If0)) {
     var x10 = $as_Lprooftree_If0(expr);
@@ -2320,7 +2320,7 @@ $c_Lprooftree_ProofTreeDrawer$.prototype.interp__Lprooftree_Expr__sci_Map__T2 = 
     var flsRes = $as_Lprooftree_Value(x1$11.$$und1$f);
     var flsTree = $as_Lprooftree_ProofTree(x1$11.$$und2$f);
     $m_sci_List$();
-    var mathExpr$2 = new $c_Lprooftree_Other().init___T((condRes + " \u2260 0"));
+    var mathExpr$2 = new $c_Lprooftree_NotEqualTo0().init___Lprooftree_Value(condRes);
     var array$6 = [condTree, new $c_Lprooftree_ProofTree().init___sci_List__Lprooftree_MathExpr($m_sci_Nil$(), mathExpr$2), flsTree];
     var i$6 = (((-1) + $uI(array$6.length)) | 0);
     var result$6 = $m_sci_Nil$();
@@ -10249,7 +10249,7 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraphHelper__p1__Lprooftree_Parag
   }
 });
 $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (function() {
-  var jsx$8 = this.toReducedParagraphHelper__p1__Lprooftree_Paragraph().lines$1;
+  var proofTree = this.toReducedParagraphHelper__p1__Lprooftree_Paragraph().lines$1;
   var this$19 = $m_Lprooftree_Reduced$().exprs$1;
   var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
     return (function(x0$1$2) {
@@ -10260,7 +10260,7 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
         var x = (("* %s = %-" + ($m_Lprooftree_Reduced$().notReduceLength$1 << 1)) + "s = %s");
         var this$4 = new $c_sci_StringOps().init___T(x);
         var array = [rs, e.toReducedString__I__T($m_Lprooftree_Reduced$().numNotReduce$1), e];
-        var jsx$7 = $m_sjsr_RuntimeString$();
+        var jsx$2 = $m_sjsr_RuntimeString$();
         var $$this = this$4.repr$1;
         $m_sc_Seq$();
         $m_sjs_js_WrappedArray$();
@@ -10291,13 +10291,13 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
         var that = result.u.length;
         var end = ((x$2 < that) ? x$2 : that);
         while ((i$1 < end)) {
-          var jsx$6 = j;
+          var jsx$1 = j;
           var index$1 = i$1;
-          result.set(jsx$6, array$1[index$1]);
+          result.set(jsx$1, array$1[index$1]);
           i$1 = ((1 + i$1) | 0);
           j = ((1 + j) | 0)
         };
-        return jsx$7.format__T__AO__T($$this, result)
+        return jsx$2.format__T__AO__T($$this, result)
       } else {
         throw new $c_s_MatchError().init___O(x0$1)
       }
@@ -10307,10 +10307,8 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
   var bf$1 = this$18.ReusableCBFInstance$2;
   var this$20 = $as_sc_TraversableOnce($f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O(this$19, f, bf$1)).toList__sci_List();
   var ord = $m_s_math_Ordering$String$();
-  var jsx$5 = $as_sc_GenTraversableOnce($f_sc_SeqLike__sorted__s_math_Ordering__O(this$20, ord));
-  var this$21 = $m_sci_List$();
-  var jsx$4 = $as_sci_List(jsx$8.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(jsx$5, this$21.ReusableCBFInstance$2));
-  var this$40 = $m_Lprooftree_Reduced$().values$1;
+  var reducedExprs = $as_sci_List($f_sc_SeqLike__sorted__s_math_Ordering__O(this$20, ord));
+  var this$39 = $m_Lprooftree_Reduced$().values$1;
   var f$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
     return (function(x0$2$2) {
       var x0$2 = $as_T2(x0$2$2);
@@ -10318,10 +10316,10 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
         var v = $as_Lprooftree_Value(x0$2.$$und1$f);
         var rs$1 = $as_T(x0$2.$$und2$f);
         var x$3 = (("* %s = %-" + ($m_Lprooftree_Reduced$().notReduceLength$1 << 1)) + "s = %s");
-        var this$25 = new $c_sci_StringOps().init___T(x$3);
+        var this$24 = new $c_sci_StringOps().init___T(x$3);
         var array$2 = [rs$1, v.toReducedString__I__T($m_Lprooftree_Reduced$().numNotReduce$1), v];
-        var jsx$3 = $m_sjsr_RuntimeString$();
-        var $$this$1 = this$25.repr$1;
+        var jsx$4 = $m_sjsr_RuntimeString$();
+        var $$this$1 = this$24.repr$1;
         $m_sc_Seq$();
         $m_sjs_js_WrappedArray$();
         var array$3 = [];
@@ -10336,7 +10334,7 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
         while ((i$2 < len$3)) {
           var index$2 = i$2;
           var arg1$1 = array$2[index$2];
-          var elem$1 = $f_sci_StringLike__unwrapArg__psci_StringLike__O__O(this$25, arg1$1);
+          var elem$1 = $f_sci_StringLike__unwrapArg__psci_StringLike__O__O(this$24, arg1$1);
           array$3.push(elem$1);
           i$2 = ((1 + i$2) | 0)
         };
@@ -10351,25 +10349,27 @@ $c_Lprooftree_ProofTree.prototype.toReducedParagraph__Lprooftree_Paragraph = (fu
         var that$1 = result$1.u.length;
         var end$1 = ((x$5 < that$1) ? x$5 : that$1);
         while ((i$3 < end$1)) {
-          var jsx$2 = j$1;
+          var jsx$3 = j$1;
           var index$3 = i$3;
-          result$1.set(jsx$2, array$3[index$3]);
+          result$1.set(jsx$3, array$3[index$3]);
           i$3 = ((1 + i$3) | 0);
           j$1 = ((1 + j$1) | 0)
         };
-        return jsx$3.format__T__AO__T($$this$1, result$1)
+        return jsx$4.format__T__AO__T($$this$1, result$1)
       } else {
         throw new $c_s_MatchError().init___O(x0$2)
       }
     })
   })(this));
-  var this$39 = $m_scm_Iterable$();
-  var bf$3 = this$39.ReusableCBFInstance$2;
-  var this$41 = $as_sc_TraversableOnce($f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O(this$40, f$1, bf$3)).toList__sci_List();
+  var this$38 = $m_scm_Iterable$();
+  var bf$3 = this$38.ReusableCBFInstance$2;
+  var this$40 = $as_sc_TraversableOnce($f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O(this$39, f$1, bf$3)).toList__sci_List();
   var ord$1 = $m_s_math_Ordering$String$();
-  var jsx$1 = $as_sc_GenTraversableOnce($f_sc_SeqLike__sorted__s_math_Ordering__O(this$41, ord$1));
+  var reducedValues = $as_sci_List($f_sc_SeqLike__sorted__s_math_Ordering__O(this$40, ord$1));
+  var this$41 = $m_sci_List$();
+  var jsx$5 = $as_sci_List(proofTree.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(reducedExprs, this$41.ReusableCBFInstance$2));
   var this$42 = $m_sci_List$();
-  return new $c_Lprooftree_Paragraph().init___sci_List($as_sci_List(jsx$4.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(jsx$1, this$42.ReusableCBFInstance$2)))
+  return new $c_Lprooftree_Paragraph().init___sci_List($as_sci_List(jsx$5.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(reducedValues, this$42.ReusableCBFInstance$2)))
 });
 $c_Lprooftree_ProofTree.prototype.hashCode__I = (function() {
   var this$2 = $m_s_util_hashing_MurmurHash3$();
@@ -13190,6 +13190,85 @@ var $d_Lprooftree_Mul = new $TypeData().initClass({
 });
 $c_Lprooftree_Mul.prototype.$classData = $d_Lprooftree_Mul;
 /** @constructor */
+function $c_Lprooftree_NotEqualTo0() {
+  $c_O.call(this);
+  this.value$1 = null
+}
+$c_Lprooftree_NotEqualTo0.prototype = new $h_O();
+$c_Lprooftree_NotEqualTo0.prototype.constructor = $c_Lprooftree_NotEqualTo0;
+/** @constructor */
+function $h_Lprooftree_NotEqualTo0() {
+  /*<skip>*/
+}
+$h_Lprooftree_NotEqualTo0.prototype = $c_Lprooftree_NotEqualTo0.prototype;
+$c_Lprooftree_NotEqualTo0.prototype.productPrefix__T = (function() {
+  return "NotEqualTo0"
+});
+$c_Lprooftree_NotEqualTo0.prototype.productArity__I = (function() {
+  return 1
+});
+$c_Lprooftree_NotEqualTo0.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true
+  } else if ((x$1 instanceof $c_Lprooftree_NotEqualTo0)) {
+    var NotEqualTo0$1 = $as_Lprooftree_NotEqualTo0(x$1);
+    var x = this.value$1;
+    var x$2 = NotEqualTo0$1.value$1;
+    return ((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))
+  } else {
+    return false
+  }
+});
+$c_Lprooftree_NotEqualTo0.prototype.productElement__I__O = (function(x$1) {
+  switch (x$1) {
+    case 0: {
+      return this.value$1;
+      break
+    }
+    default: {
+      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
+    }
+  }
+});
+$c_Lprooftree_NotEqualTo0.prototype.toString__T = (function() {
+  return (this.value$1 + " \u2260 0")
+});
+$c_Lprooftree_NotEqualTo0.prototype.init___Lprooftree_Value = (function(value) {
+  this.value$1 = value;
+  return this
+});
+$c_Lprooftree_NotEqualTo0.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__I(this, (-889275714))
+});
+$c_Lprooftree_NotEqualTo0.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+$c_Lprooftree_NotEqualTo0.prototype.toReducedString__T = (function() {
+  return (this.value$1.toReducedString__I__T(0) + " \u2260 0")
+});
+function $as_Lprooftree_NotEqualTo0(obj) {
+  return (((obj instanceof $c_Lprooftree_NotEqualTo0) || (obj === null)) ? obj : $throwClassCastException(obj, "prooftree.NotEqualTo0"))
+}
+function $isArrayOf_Lprooftree_NotEqualTo0(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lprooftree_NotEqualTo0)))
+}
+function $asArrayOf_Lprooftree_NotEqualTo0(obj, depth) {
+  return (($isArrayOf_Lprooftree_NotEqualTo0(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lprooftree.NotEqualTo0;", depth))
+}
+var $d_Lprooftree_NotEqualTo0 = new $TypeData().initClass({
+  Lprooftree_NotEqualTo0: 0
+}, false, "prooftree.NotEqualTo0", {
+  Lprooftree_NotEqualTo0: 1,
+  O: 1,
+  Lprooftree_MathExpr: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lprooftree_NotEqualTo0.prototype.$classData = $d_Lprooftree_NotEqualTo0;
+/** @constructor */
 function $c_Lprooftree_Num() {
   $c_O.call(this);
   this.num$1 = 0
@@ -13373,83 +13452,6 @@ var $d_Lprooftree_NumVal = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Lprooftree_NumVal.prototype.$classData = $d_Lprooftree_NumVal;
-/** @constructor */
-function $c_Lprooftree_Other() {
-  $c_O.call(this);
-  this.str$1 = null
-}
-$c_Lprooftree_Other.prototype = new $h_O();
-$c_Lprooftree_Other.prototype.constructor = $c_Lprooftree_Other;
-/** @constructor */
-function $h_Lprooftree_Other() {
-  /*<skip>*/
-}
-$h_Lprooftree_Other.prototype = $c_Lprooftree_Other.prototype;
-$c_Lprooftree_Other.prototype.productPrefix__T = (function() {
-  return "Other"
-});
-$c_Lprooftree_Other.prototype.productArity__I = (function() {
-  return 1
-});
-$c_Lprooftree_Other.prototype.equals__O__Z = (function(x$1) {
-  if ((this === x$1)) {
-    return true
-  } else if ((x$1 instanceof $c_Lprooftree_Other)) {
-    var Other$1 = $as_Lprooftree_Other(x$1);
-    return (this.str$1 === Other$1.str$1)
-  } else {
-    return false
-  }
-});
-$c_Lprooftree_Other.prototype.productElement__I__O = (function(x$1) {
-  switch (x$1) {
-    case 0: {
-      return this.str$1;
-      break
-    }
-    default: {
-      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
-    }
-  }
-});
-$c_Lprooftree_Other.prototype.toString__T = (function() {
-  return this.str$1
-});
-$c_Lprooftree_Other.prototype.init___T = (function(str) {
-  this.str$1 = str;
-  return this
-});
-$c_Lprooftree_Other.prototype.hashCode__I = (function() {
-  var this$2 = $m_s_util_hashing_MurmurHash3$();
-  return this$2.productHash__s_Product__I__I(this, (-889275714))
-});
-$c_Lprooftree_Other.prototype.productIterator__sc_Iterator = (function() {
-  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
-});
-$c_Lprooftree_Other.prototype.toReducedString__T = (function() {
-  return this.str$1
-});
-function $as_Lprooftree_Other(obj) {
-  return (((obj instanceof $c_Lprooftree_Other) || (obj === null)) ? obj : $throwClassCastException(obj, "prooftree.Other"))
-}
-function $isArrayOf_Lprooftree_Other(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lprooftree_Other)))
-}
-function $asArrayOf_Lprooftree_Other(obj, depth) {
-  return (($isArrayOf_Lprooftree_Other(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lprooftree.Other;", depth))
-}
-var $d_Lprooftree_Other = new $TypeData().initClass({
-  Lprooftree_Other: 0
-}, false, "prooftree.Other", {
-  Lprooftree_Other: 1,
-  O: 1,
-  Lprooftree_MathExpr: 1,
-  s_Product: 1,
-  s_Equals: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_Lprooftree_Other.prototype.$classData = $d_Lprooftree_Other;
 /** @constructor */
 function $c_Lprooftree_Sub() {
   $c_O.call(this);

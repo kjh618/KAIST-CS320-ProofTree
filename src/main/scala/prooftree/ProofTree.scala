@@ -28,13 +28,19 @@ case class ProofTree(premises: List[ProofTree], conclusion: MathExpr) {
   }
 
   def toReducedParagraph(): Paragraph = {
-    Paragraph(toReducedParagraphHelper().lines ++
+    val proofTree = toReducedParagraphHelper().lines
+    // Below produces weird result if `e` is longer than `notReduceLength`,
+    // but the inner expression doesn't exist in `Reduced.exprs`.
+    // (In that case, it modifies `Reduced.exprs` while doing `.map()`.)
+    val reducedExprs =
       Reduced.exprs.map({ case (e, rs) =>
         s"* %s = %-${Reduced.notReduceLength * 2}s = %s".format(rs, e.toReducedString(Reduced.numNotReduce), e)
-      }).toList.sorted ++
+      }).toList.sorted
+    val reducedValues =
       Reduced.values.map({ case (v, rs) =>
         s"* %s = %-${Reduced.notReduceLength * 2}s = %s".format(rs, v.toReducedString(Reduced.numNotReduce), v)
-      }).toList.sorted)
+      }).toList.sorted
+    Paragraph(proofTree ++ reducedExprs ++ reducedValues)
   }
 
   def toReducedString(): String = toReducedParagraph().toString

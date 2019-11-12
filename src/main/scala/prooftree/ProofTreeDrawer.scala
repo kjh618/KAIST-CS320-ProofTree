@@ -47,7 +47,7 @@ object ProofTreeDrawer {
             val (argRes, argTree) = interp(arg, env)
             val (bodyRes, bodyTree) = interp(body, funEnv + (param -> argRes))
             (bodyRes, ProofTree(List(funTree, argTree, bodyTree), Implication(env, expr, bodyRes)))
-          case v => error(s"not a function: $v")
+          case v => error(s"not a closure: $v")
         }
 
       case If0(cond, tru, fls) =>
@@ -58,7 +58,7 @@ object ProofTreeDrawer {
             (truRes, ProofTree(List(condTree, truTree), Implication(env, expr, truRes)))
           case v =>
             val (flsRes, flsTree) = interp(fls, env)
-            (flsRes, ProofTree(List(condTree, ProofTree(Other(s"$v ≠ 0")), flsTree), Implication(env, expr, flsRes)))
+            (flsRes, ProofTree(List(condTree, ProofTree(NotEqualTo0(v)), flsTree), Implication(env, expr, flsRes)))
         }
     }
   }
