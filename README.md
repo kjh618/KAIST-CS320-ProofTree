@@ -4,7 +4,6 @@ A proof tree drawer for CFWAE (Conditionals, Functions, "With"'s, Arithmetic Exp
 
 ## Usage
 ```console
-$ cd proof-tree
 $ sbt "run input_file output_file"
 ```
 
