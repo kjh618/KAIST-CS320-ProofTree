@@ -3,8 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>Proof Tree Drawer for CFWAE</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
+
     <body>
+        <h1>Proof Tree Drawer for CFWAE</h1>
+
+        <form>
+            <label for="programTextarea">Program</label>
+            <textarea id="programTextarea"></textarea>
+
+            <input type="checkbox" id="reduceCheckbox">
+            <label for="reduceCheckbox">Enable String Reduce</label>
+
+            <input type="button" value="Run" onclick="runProgram()">
+        </form>
+
+        <label for="proofTreeTextarea">Proof Tree</label>
+        <textarea id="proofTreeTextarea" readonly></textarea>
+
         <!-- Include Scala.js compiled code -->
         <script type="text/javascript" src="./target/scala-2.12/proof-tree-fastopt.js"></script>
     </body>

@@ -1,0 +1,12 @@
+textarea {
+    width: 100%;
+    white-space: pre;
+}
+
+#programTextarea {
+    height: 200px;
+}
+
+#proofTreeTextarea {
+    height: 500px;
+}
