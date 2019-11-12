@@ -18,7 +18,7 @@ object Main {
       println("Done!")
     }
     else {
-      println("Usage: sbt \"run input.txt output.txt\"")
+      println("Usage: sbt \"run input_file output_file\"")
     }
   }
 }
