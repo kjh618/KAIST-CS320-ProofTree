@@ -2030,10 +2030,25 @@ $c_Lprooftree_Main$.prototype.init___ = (function() {
   return this
 });
 $c_Lprooftree_Main$.prototype.runProgram__V = (function() {
-  this.proofTree$1.value = $m_Lprooftree_ProofTreeDrawer$().run__T__T($as_T(this.programInput$1.value))
+  this.proofTree$1.value = this.liftedTree1$1__p1__T()
 });
 $c_Lprooftree_Main$.prototype.main__AT__V = (function(args) {
   /*<skip>*/
+});
+$c_Lprooftree_Main$.prototype.liftedTree1$1__p1__T = (function() {
+  try {
+    return $m_Lprooftree_ProofTreeDrawer$().run__T__T($as_T(this.programInput$1.value))
+  } catch (e) {
+    var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+    if ((e$2 instanceof $c_jl_RuntimeException)) {
+      var e$4 = $as_jl_RuntimeException(e$2);
+      return e$4.getMessage__T()
+    } else if ((e$2 !== null)) {
+      return ("unknown error: " + e$2)
+    } else {
+      throw e
+    }
+  }
 });
 var $d_Lprooftree_Main$ = new $TypeData().initClass({
   Lprooftree_Main$: 0
@@ -8605,6 +8620,15 @@ $c_jl_RuntimeException.prototype.init___T = (function(s) {
   $c_jl_Throwable.prototype.init___T__jl_Throwable__Z__Z.call(this, s, null, true, true);
   return this
 });
+function $as_jl_RuntimeException(obj) {
+  return (((obj instanceof $c_jl_RuntimeException) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.RuntimeException"))
+}
+function $isArrayOf_jl_RuntimeException(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.jl_RuntimeException)))
+}
+function $asArrayOf_jl_RuntimeException(obj, depth) {
+  return (($isArrayOf_jl_RuntimeException(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.lang.RuntimeException;", depth))
+}
 var $d_jl_RuntimeException = new $TypeData().initClass({
   jl_RuntimeException: 0
 }, false, "java.lang.RuntimeException", {

@@ -10,7 +10,10 @@ object Main {
 
   @JSExportTopLevel("runProgram")
   def runProgram(): Unit = {
-    proofTree.value = ProofTreeDrawer.run(programInput.value)
+    proofTree.value = try ProofTreeDrawer.run(programInput.value) catch {
+      case e: RuntimeException => e.getMessage
+      case e: Throwable => s"unknown error: $e"
+    }
   }
 
   def main(args: Array[String]): Unit = {
