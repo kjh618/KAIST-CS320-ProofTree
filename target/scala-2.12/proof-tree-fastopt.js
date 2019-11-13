@@ -2014,7 +2014,7 @@ function $m_Lprooftree_Env$() {
 function $c_Lprooftree_Main$() {
   $c_O.call(this);
   this.programInput$1 = null;
-  this.proofTree$1 = null
+  this.output$1 = null
 }
 $c_Lprooftree_Main$.prototype = new $h_O();
 $c_Lprooftree_Main$.prototype.constructor = $c_Lprooftree_Main$;
@@ -2026,11 +2026,11 @@ $h_Lprooftree_Main$.prototype = $c_Lprooftree_Main$.prototype;
 $c_Lprooftree_Main$.prototype.init___ = (function() {
   $n_Lprooftree_Main$ = this;
   this.programInput$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("programInput");
-  this.proofTree$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("proofTree");
+  this.output$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("output");
   return this
 });
 $c_Lprooftree_Main$.prototype.runProgram__V = (function() {
-  this.proofTree$1.value = this.liftedTree1$1__p1__T()
+  this.output$1.textContent = this.liftedTree1$1__p1__T()
 });
 $c_Lprooftree_Main$.prototype.main__AT__V = (function(args) {
   /*<skip>*/
